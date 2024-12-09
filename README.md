@@ -17,12 +17,18 @@ pip install pyswip
 Modifica el archivo "rules_prolog.pl" para añadir tu origen de datos ODBC, si no tienes uno para PostgreSQL lo puedes añadir, por lo general tendrá este nombre para los orígenes que son de PostgreSQL **PostgreSQL30**, esto lo escribirás en "tu_origen_de_datos" en el archivo "rules_prolog.pl", también modifica el archivo "connection.py" con tus credenciales.
 
 Abres este programa:
+
+
 ![alt text](ODBC.png)
 
 Si no tienes algo como PostgreSQL30, seleccionas agregar
+
+
 ![alt text](Interfazes.png)
 
 Le pasas tus credenciales a tu nueva interzas y guardas
+
+
 ![alt text](agregar_interfaz.png)
 
 
