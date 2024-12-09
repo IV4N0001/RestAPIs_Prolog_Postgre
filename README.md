@@ -26,7 +26,7 @@ Si no tienes algo como PostgreSQL30, seleccionas agregar
 
 ![alt text](Interfazes.png)
 
-Le pasas tus credenciales a tu nueva interzas y guardas
+Le pasas tus credenciales a tu nueva interfaz y guardas
 
 
 ![alt text](agregar_interfaz.png)
