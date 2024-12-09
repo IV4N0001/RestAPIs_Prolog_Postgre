@@ -7,7 +7,6 @@ from datetime import datetime
 
 router = APIRouter()
 
-# Crear un nuevo detalle
 @router.post("/crear_detalle", response_model=DetalleResponse)
 def crear_detalle(detalle: DetalleCreate, db: Session = Depends(get_db)):
     nuevo_detalle = Detalle_Mascota(**detalle.model_dump())
@@ -16,7 +15,6 @@ def crear_detalle(detalle: DetalleCreate, db: Session = Depends(get_db)):
     db.refresh(nuevo_detalle)
     return nuevo_detalle
 
-# Obtener todos los detalles
 @router.get("/get_detalles")
 def get_detalles():
     try:
@@ -49,7 +47,6 @@ def get_detalles():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-# Obtener un detalle por ID
 @router.get("/get_detalle_by_id/{id}")
 def get_detalle_by_id(id: int):
     try:
@@ -88,7 +85,6 @@ def get_detalle_by_id(id: int):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-# Actualizar un detalle
 @router.patch("/actualizar/{id}", response_model=DetalleResponse)
 def actualizar_detalle(id: int, detalle_actualizado: DetalleUpdate, db: Session = Depends(get_db)):
     detalle = db.query(Detalle_Mascota).filter(Detalle_Mascota.id == id).first()
@@ -114,7 +110,6 @@ def actualizar_detalle(id: int, detalle_actualizado: DetalleUpdate, db: Session 
     db.refresh(detalle)
     return detalle
 
-# Eliminar un detalle
 @router.delete("/eliminar/{id}", response_model=dict)
 def eliminar_detalle(id: int, db: Session = Depends(get_db)):
     detalle = db.query(Detalle_Mascota).filter(Detalle_Mascota.id == id).first()

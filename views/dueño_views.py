@@ -14,7 +14,6 @@ def crear_dueño(dueño: DueñoCreate, db: Session = Depends(get_db)):
     db.refresh(nuevo_dueño)
     return nuevo_dueño
 
-# Obtener todos los hoteles (GET)
 @router.get("/get_dueños")
 def get_dueños():
     try:
@@ -46,7 +45,6 @@ def get_dueños():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-# Obtener un hotel por ID (GET) - Personaliza la regla en Prolog para este caso
 @router.get("/get_dueño_by_id/{id}")
 def get_dueño_by_id(id: int):
     try:
@@ -82,7 +80,6 @@ def get_dueño_by_id(id: int):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
-# Actualizar un dueño (PATCH)
 @router.patch("/actualizar/{id}", response_model=DueñoResponse)
 def actualizar_dueño(id: int, dueño_actualizado: DueñoUpdate, db: Session = Depends(get_db)):
     dueño = db.query(Dueño).filter(Dueño.id == id).first()
@@ -102,8 +99,6 @@ def actualizar_dueño(id: int, dueño_actualizado: DueñoUpdate, db: Session = D
     db.refresh(dueño)
     return dueño
 
-
-# Eliminar un hotel (DELETE)
 @router.delete("/eliminar/{id}", response_model=dict)
 def eliminar_dueño(id: int, db: Session = Depends(get_db)):
     dueño = db.query(Dueño).filter(Dueño.id == id).first()

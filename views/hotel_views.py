@@ -6,7 +6,6 @@ from schemas.hotel_schema import HotelCreate, HotelUpdate, HotelResponse
 
 router = APIRouter()
 
-# Crear un hotel (POST)
 @router.post("/crear_hotel", response_model=HotelResponse)
 def crear_hotel(hotel: HotelCreate, db: Session = Depends(get_db)):
     nuevo_hotel = Hotel(nombre=hotel.nombre)
@@ -15,7 +14,6 @@ def crear_hotel(hotel: HotelCreate, db: Session = Depends(get_db)):
     db.refresh(nuevo_hotel)
     return nuevo_hotel
 
-# Obtener todos los hoteles (GET)
 @router.get("/get_hoteles")
 def get_hoteles():
     try:
@@ -44,7 +42,6 @@ def get_hoteles():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-# Obtener un hotel por ID (GET) - Personaliza la regla en Prolog para este caso
 @router.get("/get_hotel_by_id/{id}")
 def get_hotel_by_id(id: int):
     try:
@@ -77,7 +74,6 @@ def get_hotel_by_id(id: int):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-# Actualizar un hotel (PATCH)
 @router.patch("/actualizar/{id}", response_model=HotelResponse)
 def actualizar_hotel(id: int, hotel_actualizado: HotelUpdate, db: Session = Depends(get_db)):
     hotel = db.query(Hotel).filter(Hotel.id == id).first()
@@ -91,7 +87,6 @@ def actualizar_hotel(id: int, hotel_actualizado: HotelUpdate, db: Session = Depe
     db.refresh(hotel)
     return hotel
 
-# Eliminar un hotel (DELETE)
 @router.delete("/eliminar/{id}", response_model=dict)
 def eliminar_hotel(id: int, db: Session = Depends(get_db)):
     hotel = db.query(Hotel).filter(Hotel.id == id).first()

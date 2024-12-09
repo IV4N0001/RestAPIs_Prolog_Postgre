@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 
-# Esquema base para un Dueño (utilizado en Create y Update)
 class DetalleBase(BaseModel):
     id_mascota: int
     inicio_desayuno: str
@@ -11,11 +10,9 @@ class DetalleBase(BaseModel):
     temperatura_ideal: float
     comentarios: str
 
-# Esquema para crear un nuevo dueño
 class DetalleCreate(DetalleBase):
     pass
 
-# Esquema para actualizar un dueño (opcional)
 class DetalleUpdate(BaseModel):
     inicio_desayuno: str | None = None
     fin_desayuno: str | None = None
@@ -25,7 +22,6 @@ class DetalleUpdate(BaseModel):
     temperatura_ideal: float | None = None
     comentarios: str | None = None
 
-# Esquema para la respuesta que será enviada al cliente
 class DetalleResponse(DetalleBase):
     id: int
 

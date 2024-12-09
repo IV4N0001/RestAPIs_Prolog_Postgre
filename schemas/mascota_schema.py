@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 
-# Esquema base para un Dueño (utilizado en Create y Update)
 class MascotaBase(BaseModel):
     nombre: str
     raza: str
@@ -10,11 +9,9 @@ class MascotaBase(BaseModel):
     id_dueño: int
     estado: str
 
-# Esquema para crear un nuevo dueño
 class MascotaCreate(MascotaBase):
     pass
 
-# Esquema para actualizar un dueño (opcional)
 class MascotaUpdate(BaseModel):
     nombre: str | None = None
     raza: str | None = None
@@ -23,7 +20,6 @@ class MascotaUpdate(BaseModel):
     peso: float | None = None
     estado: str | None = None
 
-# Esquema para la respuesta que será enviada al cliente
 class MascotaResponse(MascotaBase):
     id: int
 

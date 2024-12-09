@@ -6,7 +6,6 @@ from connection import ejecutar_prolog, get_db
 
 router = APIRouter()
 
-# Crear una nueva estancia
 @router.post("/crear_estancia", response_model=EstanciaResponse)
 def crear_estancia(estancia: EstanciaCreate, db: Session = Depends(get_db)):
     nueva_estancia = Estancia(**estancia.model_dump())
@@ -15,7 +14,6 @@ def crear_estancia(estancia: EstanciaCreate, db: Session = Depends(get_db)):
     db.refresh(nueva_estancia)
     return nueva_estancia
 
-# Obtener todas las estancias
 @router.get("/get_estancias")
 def get_estancias():
     try:
@@ -45,7 +43,6 @@ def get_estancias():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-# Obtener una estancia por ID
 @router.get("/get_estancia_by_id/{id}")
 def get_estancia_by_id(id: int):
     try:
@@ -80,7 +77,6 @@ def get_estancia_by_id(id: int):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-# Actualizar una estancia
 @router.patch("/actualizar_estancia/{id}", response_model=EstanciaResponse)
 def actualizar_estancia(id: int, estancia_actualizada: EstanciaUpdate, db: Session = Depends(get_db)):
     estancia = db.query(Estancia).filter(Estancia.id == id).first()
@@ -94,7 +90,6 @@ def actualizar_estancia(id: int, estancia_actualizada: EstanciaUpdate, db: Sessi
     db.refresh(estancia)
     return estancia
 
-# Eliminar una estancia
 @router.delete("/eliminar_estancia/{id}", response_model=dict)
 def eliminar_estancia(id: int, db: Session = Depends(get_db)):
     estancia = db.query(Estancia).filter(Estancia.id == id).first()

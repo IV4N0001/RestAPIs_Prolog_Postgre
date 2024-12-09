@@ -40,7 +40,6 @@ def get_cuartos():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
-# Obtener un hotel por ID (GET) - Personaliza la regla en Prolog para este caso
 @router.get("/get_cuarto_by_id/{id}")
 def get_cuarto_by_id(id: int):
     try:
@@ -80,7 +79,6 @@ def get_cuarto_by_id(id: int):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
-# Actualizar un dueño (PATCH)
 @router.patch("/actualizar/{id}", response_model=CuartoResponse)
 def actualizar_cuarto(id: int, cuarto_actualizado: CuartoUpdate, db: Session = Depends(get_db)):
     cuarto = db.query(Cuarto).filter(Cuarto.id == id).first()
